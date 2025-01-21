@@ -18,3 +18,4 @@ export const ArrowButtonStory: Story = {
 			return <ArrowButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />;
 		}),
 };
+
