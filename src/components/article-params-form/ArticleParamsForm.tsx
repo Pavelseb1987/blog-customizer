@@ -17,7 +17,7 @@ import styles from './ArticleParamsForm.module.scss';
 import { useState,  useRef, FormEvent } from 'react';
 import { RadioGroup } from 'src/ui/radio-group/RadioGroup';
 import { Text } from 'src/ui/text/Text';
-
+import { useOutsideClickClose } from 'src/ui/select/hooks/useOutsideClickClose'
 import clsx from 'clsx';
 
 type ArticleParamsFormProps = {
@@ -28,6 +28,10 @@ export const ArticleParamsForm: React.FC<ArticleParamsFormProps> = ({ setArticle
 	const [isSidebarOpen, setIsSidebarOpen] = useState<boolean>(false);
 	const formRef = useRef<HTMLFormElement>(null);
 	const [formState, setFormState] = useState<ArticleStateType>(defaultArticleState);
+
+	useOutsideClickClose(formRef, () => {
+	  setIsSidebarOpen(false);
+	})
 
 	const handleChange = (name: keyof ArticleStateType, option: OptionType)  => {
 		setFormState((prevState) => ({
@@ -53,7 +57,7 @@ export const ArticleParamsForm: React.FC<ArticleParamsFormProps> = ({ setArticle
 		<ArrowButton isOpen={isSidebarOpen}  onClick={() => setIsSidebarOpen(!isSidebarOpen)}/>
 		  <aside className={clsx(styles.container, { [styles.container_open]: isSidebarOpen })}>
 			<form ref={formRef} className={styles.form} onReset={handleReset} onSubmit={handleSubmit}>
-			<Text weight={800} size={31} uppercase={true}>Задайте параметры</Text>
+			<Text  as={'h3'} weight={800} size={31} uppercase={true}>Задайте параметры</Text>
 			<Select
 			    title={'шрифт'}
 				options={fontFamilyOptions}

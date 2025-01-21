@@ -4,7 +4,7 @@ import { Text } from 'src/ui/text/Text';
 import { Option } from './Option';
 import { isFontFamilyClass } from './helpers/isFontFamilyClass';
 import { useEnterSubmit } from './hooks/useEnterSubmit';
-import { useOutsideClickClose } from './hooks/useOutsideClickClose';
+// import { useOutsideClickClose } from './hooks/useOutsideClickClose';
 
 import type { MouseEventHandler } from 'react';
 import clsx from 'clsx';
@@ -26,12 +26,12 @@ export const Select = (props: SelectProps) => {
 	const rootRef = useRef<HTMLDivElement>(null);
 	const placeholderRef = useRef<HTMLDivElement>(null);
 
-	useOutsideClickClose({
-		isOpen,
-		rootRef,
-		onClose,
-		onChange: setIsOpen,
-	});
+	// useOutsideClickClose({
+	// 	isOpen,
+	// 	rootRef,
+	// 	onClose,
+	// 	onChange: setIsOpen,
+	// });
 
 	useEnterSubmit({
 		placeholderRef,
